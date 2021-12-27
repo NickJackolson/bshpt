@@ -1,3 +1,6 @@
+#ifndef GAME_HPP
+#define GAME_HPP
+
 #include "ship.hpp"
 
 class game
@@ -9,3 +12,4 @@ public:
     ~game() {}
     void run();
 };
+#endif

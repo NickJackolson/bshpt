@@ -1,22 +1,25 @@
 #include "../include/ship.hpp"
-#include <string.h>
-#include <stdlib.h>
 
 ship::ship(){}
 
-ship::ship(int id, int size, char* name)
+ship::ship(int id, int size, const char* name)
 {
     this->id = id;
     this->size = size;
+    this->name = (char*) malloc(sizeof(char)*strlen(name));
     strcpy(this->name, name);
     this->coords = (struct s_coords*) malloc(sizeof(struct s_coords)*size);
+    // initial values
+    for(int i=0;i<size;i++){
+        this->coords[i].xCoord = -1;
+        this->coords[i].yCoord = -1;
+        this->coords[i].hit = false;
+    }
+    this->floating = false;
 }
 
 ship::~ship()
 {
-    free(this->name);
-    free(this->coords);
-    delete(this);
 }
 
 void ship::place(struct s_coords *coords)
@@ -46,9 +49,19 @@ bool ship::isFloating()
         return false;
     }
     for(int i=0;i<this->size;i++){
-        if(!this->coords[i].hit)
+        if(!this->coords[i].hit){
             return true;
+        }
     }
     this->floating = false;
     return false;
+}
+
+int ship::getSize()
+{
+    return this->size;
+}
+
+char* ship::getName(){
+    return this->name;
 }
