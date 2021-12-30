@@ -4,13 +4,15 @@ A minimal battleship game featuring the most basic AI to play against. There mig
 ## REQUIREMENTS
 * Linux OS
 * C++ compiler
-* Cmake
+* CMake
 
 ## SETUP
-`git clone https://github.com/NickJackolson/bshpt`
-`cd bshpt`
-`mkdir build`
-`cd build`
-`cmake ..`
-`make`
-`./app`
+```bash
+git clone https://github.com/NickJackolson/bshpt
+cd bshpt
+mkdir build
+cd build
+cmake ..
+make
+./app
+```
