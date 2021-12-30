@@ -29,7 +29,7 @@ bool board::placeOnBoard(int shipKind, int orientation, struct s_coords tail)
     int end;
     int curSize;
     struct s_coords* coordlist;
-
+    printf("Enter %s\n",__func__);
     // Perform checks before placing ship to coords
     s = &this->fleet[shipKind];
     if(tail.xCoord > 9 || tail.yCoord > 9)
@@ -66,6 +66,8 @@ bool board::placeOnBoard(int shipKind, int orientation, struct s_coords tail)
     for(int i=0;i<s->getSize();i++)
         this->table[coordlist[i].yCoord][coordlist[i].xCoord] = 1;
     free(coordlist);
+
+    printf("Exit %s\n",__func__);
     return true;
 }
 
@@ -86,7 +88,7 @@ bool board::bombard(struct s_coords target)
 void board::showStatus(){
     printf("  ");
     for(int j=0;j<10;j++)
-        printf("| %d ", j+1);
+        printf("| %d ", j);
     printf("|\n");
 
     for(int j=0;j<42;j++)
