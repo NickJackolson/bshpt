@@ -45,7 +45,6 @@ void game::placement(int player)
 
         tailCoord.xCoord = tempX;
         tailCoord.yCoord = (int)(tempY - 'A');
-        printf("coords : %d(%c), %d, %d\n",(int)(tempY - 'A'), tempY, tempX, orientation);
         if(this->playerBoard[player].placeOnBoard(i, orientation, tailCoord)){
             i++;
         }else{
@@ -76,16 +75,56 @@ void game::placeAI()
 
 void game::battle()
 {
-    int t;
+    char t;
+    char tempY;
+    int tempX;
+    s_coords targetCoord;
+
+    srand (time(NULL));
     std::cout << "BATTLE!" << std::endl;
-    std::cout << "PLAYER:" << std::endl;
-    this->playerBoard[0].showShips();
-    this->playerBoard[0].showStatus();
-    std::cout << "AI:" << std::endl;
-    this->playerBoard[1].showShips();
-    this->playerBoard[1].showStatus();
-    std::cout << "Press Any Key to return to Menu:" << std::endl;
-    std::cin >> t;
+    while(this->score[0] < 20 && this->score[1] < 20){
+        switch (this->turn)
+        {
+            case 0:
+                std::cout << "Enter Bombing Coords(A-I),(0-9):" << std::endl;
+                scanf(" %c,%d", &tempY, &tempX);
+                targetCoord.yCoord = (int)(tempY - 'A');
+                targetCoord.xCoord = tempX;
+                if(this->playerBoard[1].bombard(targetCoord)){
+                    std::cout << "HIT" << std::endl;
+                    this->score[0]++;
+                }
+                else
+                    std::cout << "MISS" << std::endl;
+                break;
+
+            case 1:
+                targetCoord.xCoord = rand() % 10;
+                targetCoord.yCoord = rand() % 10;
+                if(this->playerBoard[0].bombard(targetCoord)){
+                    std::cout << "YOU GOT HIT" << std::endl;
+                    this->score[1]++;
+                }
+                else
+                    std::cout << "MISS" << std::endl;
+                break;
+
+            default:
+                break;
+        }
+        this->turn = (this->turn + 1) % 2;
+        this->playerBoard[0].showShips();
+        this->playerBoard[0].showStatus();
+        std::cout << "PRESS ANY KEY TO ADVANCE TO THE NEXT TURN" << std::endl;
+        scanf(" %c", &t);
+
+        system("clear");
+    }
+    if(this->score[0] > this->score[1])
+        std::cout << "YOU WIN" << std::endl;
+    else
+        std::cout << "YOU LOSE" << std::endl;
+
 }
 
 void game::run()

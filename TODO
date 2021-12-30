@@ -1,0 +1,6 @@
+-> Optimization
+-> Show where AI bombed
+-> Show mock board where user bombs
+-> Implement side by side board view (player board | ai board)
+-> Implement Better AI (flood fill, search algorithm, etc)
+-> Convert user interaction parts to ncurses
