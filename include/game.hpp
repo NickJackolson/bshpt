@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <cassert>
+#include <stdio.h>      /* printf, scanf, puts, NULL */
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>
 
 #include "board.hpp"
 
@@ -15,6 +18,7 @@ private:
     int menu();
     void placement(int player);
     void battle();
+    void placeAI();
 
 public:
     game();

@@ -28,7 +28,7 @@ int game::menu()
 
 void game::placement(int player)
 {
-    // system("clear");
+    system("clear");
     int i = 0;
     s_coords tailCoord;
     char tempY;
@@ -51,10 +51,26 @@ void game::placement(int player)
         }else{
             std::cout << "Failed!  Use Valid Range -> (A-I),(0-9),(0-1)" << std::endl;
         }
-        // system("clear");
+        system("clear");
+    }
+}
 
-        this->playerBoard[player].showShips();
-        this->playerBoard[player].showStatus();
+void game::placeAI()
+{
+    int i = 0;
+    int orientation;
+    s_coords tailCoord;
+    srand (time(NULL));
+
+    while(i < 5){
+        tailCoord.xCoord = rand() % 10;
+        tailCoord.yCoord = rand() % 10;
+        orientation = rand() % 2;
+        if(this->playerBoard[1].placeOnBoard(i, orientation, tailCoord)){
+            i++;
+        }else{
+            continue;
+        }
     }
 }
 
@@ -62,20 +78,24 @@ void game::battle()
 {
     int t;
     std::cout << "BATTLE!" << std::endl;
+    std::cout << "PLAYER:" << std::endl;
     this->playerBoard[0].showShips();
     this->playerBoard[0].showStatus();
+    std::cout << "AI:" << std::endl;
+    this->playerBoard[1].showShips();
+    this->playerBoard[1].showStatus();
+    std::cout << "Press Any Key to return to Menu:" << std::endl;
+    std::cin >> t;
 }
 
 void game::run()
 {
-    // menu();
-    placement(0);
-    // battle();
-    // while(1){
-    //     if(menu() == 1){
-    //         placement();
-    //         // battle();
-    //     }else
-    //         break;
-    // }
+    while(1){
+        if(menu() == 1){
+            placeAI();
+            placement(0);
+            battle();
+        }else
+            break;
+    }
 }
