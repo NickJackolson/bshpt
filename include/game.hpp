@@ -1,15 +1,21 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include "ship.hpp"
+#include "board.hpp"
 
 class game
 {
 private:
-    
+    board playerBoard[2];
+    int score[2];
+    int turn;
+    int menu();
+    void placement();
+    void battle();
+
 public:
-    game(/* args */) {}
-    ~game() {}
+    game();
+    ~game();
     void run();
 };
 #endif

@@ -2,6 +2,7 @@
 
 int main(int argc, char const *argv[])
 {
-    game::game.run();
+    game gameObj = game();
+    gameObj.run();
     return 0;
 }

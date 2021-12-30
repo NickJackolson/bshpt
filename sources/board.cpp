@@ -56,6 +56,11 @@ bool board::placeOnBoard(int shipKind, int orientation, struct s_coords tail)
             end--;
         }
     }
+    // check if there are already ships there
+    for(int i=0;i<s->getSize();i++){
+        if(this->table[coordlist[i].yCoord][coordlist[i].xCoord] == 1)
+            return false;
+    }
     // Actual placement
     s->place(coordlist);
     for(int i=0;i<s->getSize();i++)

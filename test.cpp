@@ -13,25 +13,28 @@ int main(int argc, char const *argv[])
     if(gameBoard.placeOnBoard(CARRIER, HORIZONTAL, cord)){
         std::cout << "Ship Placed" << std::endl;
     }
+    if(gameBoard.placeOnBoard(DESTROYER, VERTICAL, cord)){
+        std::cout << "Ship Placed" << std::endl;
+    }
     gameBoard.showStatus();
     gameBoard.showShips();
 
-    cord.xCoord = 0;
-    cord.yCoord = 0;
-    std::cout << "1st Bombing" << std::endl;
-    if(gameBoard.bombard(cord)){
-        std::cout << "Ship Hit" << std::endl;
-    }
-    cord.xCoord = 9;
-    cord.yCoord = 4;
-    std::cout << "2nd Bombing" << std::endl;
-    for(int i=0;i<5;i++){
-        if(gameBoard.bombard(cord))
-            std::cout << "Ship Hit" << std::endl;
-        cord.xCoord--;
-    }
-    gameBoard.showShips();
-    gameBoard.showStatus();
+    // cord.xCoord = 0;
+    // cord.yCoord = 0;
+    // std::cout << "1st Bombing" << std::endl;
+    // if(gameBoard.bombard(cord)){
+    //     std::cout << "Ship Hit" << std::endl;
+    // }
+    // cord.xCoord = 9;
+    // cord.yCoord = 4;
+    // std::cout << "2nd Bombing" << std::endl;
+    // for(int i=0;i<5;i++){
+    //     if(gameBoard.bombard(cord))
+    //         std::cout << "Ship Hit" << std::endl;
+    //     cord.xCoord--;
+    // }
+    // gameBoard.showShips();
+    // gameBoard.showStatus();
 
     return 0;
 }

@@ -7,6 +7,9 @@
 
 enum {VERTICAL, HORIZONTAL};
 enum {DESTROYER, SUBMARINE, CRUISER, BATTLESHIP, CARRIER};
+extern const char lineNames[10];
+extern const char* shipNames[5];
+extern const int shipSizes[5];
 
 // The 5 ships: Carrier(5), Battleship(4), Cruiser(3), Submarine(3), and Destroyer(2).
 // Board tile status: water(0), ship(1), hit(2)
